@@ -10,7 +10,7 @@ This script performs a Kruskal-Wallis test followed by pairwise Mann-Whitney U t
     --factor rpi      Compare across Raspberry Pi models
 
 Usage:
-    python3 script.py --factor <python|os|rpi>
+    python3 kruskal_test.py --factor <python|os|rpi>
 
 Input:
     - CSV files named as: results_<rpi>_<os>_python<version>.csv

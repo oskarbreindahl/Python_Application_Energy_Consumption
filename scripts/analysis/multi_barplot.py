@@ -6,14 +6,14 @@ This script creates a grouped bar plot for energy consumption (in joules), group
 with OS differentiated by bar color.
 
 Usage:
-    python3 script.py
+    python3 multi_barplot.py
 
 Input:
     - CSV files named: results_<rpi>_<os>_python<version>.csv
     - Located in ../../results/
 
 Output:
-    - A PNG image saved as: consumption_barplot_all_pis.png
+    - A PNG image saved as: ./figures/consumption_barplot_all_pis.png
 """
 
 import glob

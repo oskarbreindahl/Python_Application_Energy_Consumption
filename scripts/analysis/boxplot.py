@@ -1,6 +1,29 @@
 #!/usr/bin/env python3
+#!/usr/bin/env python3
 """
-Generate box plots of energy consumption grouped by OS, Python version, or Raspberry Pi model.
+Grouped boxplot of energy consumption for Raspberry Pi benchmarks.
+
+This script generates a boxplot of energy consumption data, grouped by one of:
+    - Python version
+    - Operating system
+    - Raspberry Pi model
+
+It aggregates energy values from multiple CSV files and visualizes distributions
+with mean annotations.
+
+Usage:
+    python3 boxplot.py <group>
+
+Arguments:
+    group      Grouping factor for the boxplot (one of: python, os, rpi)
+
+Input:
+    - CSV files named: results_<rpi>_<os>_python<version>.csv
+    - Located in ../../results/
+    - Each file should contain duration and energy data in the last two columns
+
+Output:
+    - PNG image saved to ./figures/energy_boxplot_by_<group>.png
 """
 import glob
 import os
