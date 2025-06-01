@@ -11,7 +11,7 @@ class AppException(Exception):
 
 def run_benchmarks(otii, device, project, rpi, linux, version, hostname, username, password):
     # Define command to run script
-    command = "bash run_benchmarks.sh " + version
+    command = "bash Python_Application_Energy_Consumption/scripts/experiment/run_benchmarks.sh " + version
 
     try:
         # Create an SSH client
@@ -105,7 +105,7 @@ def run_benchmarks(otii, device, project, rpi, linux, version, hostname, usernam
         round(energy_joules, 5)
     ]
 
-    file_path = f"./benchmarks/statistics_{rpi}_{linux}_{version}.csv"
+    file_path = f"../../results/results_{rpi}_{linux}_{version}.csv"
 
     # Check if file exists
     file_exists = os.path.isfile(file_path)
