@@ -1,0 +1,38 @@
+\fancyhead[R]{Python Application Energy Consumption}
+\section{Analysis}
+\label{sec:analysis}
+
+To verify that our findings are statistically significant and tell us something about the impact of our three variables, we must perform a statistical test of our data. One such method is a one-way ANOVA\cite{montgomery2019design}, which is used to check whether the means of different groups of data differ significantly. However, one-way ANOVA assumes that the underlying data is normally distributed, and visual inspection of \autoref{fig:boxplot_os}, \autoref{fig:boxplot_python} and \autoref{fig:boxplot_rpi} suggests our data is not. The Kruskal-Wallis H test\cite{kruskal1952use}, like ANOVA, is used to test whether groups of data differ, comparing the distributions of the data in the groups instead of the means. Kruskal-Wallis does not require the data to be normally distributed, and so we choose this test to analyse our data. The output of the Kruskal-Wallis test is a \textit{p-value}. If the p-value is below 0.05, we can say that not all groups are from the same distribution, i.e. that the energy consumption differs between groups. In this context, a \textit{group} refers to the full set of individual benchmark recordings associated with a specific value of a given variable, aggregated independently of other variables. For example, when analysing the effect of the operating system, the group corresponding to Alpine includes all benchmark runs conducted on Alpine, regardless of which Python version or Raspberry Pi model was used. Similarly, the group for RPi3B+ under the hardware variable encompasses all recordings made on the Raspberry Pi 3B+, irrespective of the Python version or operating system involved. If we find for a given variable that the groups differ, we are also interested in knowing how the groups compare to each other. To investigate this, we can use a post-hoc analysis such as the Mann-Whitney U test\cite{mann1947test}, which can rank the means of two differently distributed groups. We will now perform these analyses for each of our three variables. The scripts to run these analyses can be found in the repository.
+
+\subsection*{Operating system}
+Before testing our data, we formulate the following hypotheses as to the impact of OS on benchmark energy consumption:
+
+\begin{itemize}[label={}]
+    \item \textbf{Null Hypothesis $(H_0)$:}
+    There is no significant difference in energy consumption depending on the operating system. In other words, energy consumption during benchmarking is more or less equal no matter the operating system.
+    \item \textbf{Alternative Hypothesis $(H_A)$:} At least one group distribution differs significantly from at least one other group distribution. That is, at least one operating system consumes considerably less or more energy than the others.
+\end{itemize}
+
+Upon running the Kruskal-Wallis test on our data grouped by OS, we get a p-value below 0.05. Therefore, we can reject the null hypothesis, and instead accept the alternative hypothesis that at least one operating system consumes considerably less or more energy than the others. Using the Mann-Whitney U test to compare groups pairwise, we find that FreeBSD has a higher energy consumption than all the others, Ubuntu and Alpine are not significantly different from each other, and Manjaro has a lower energy consumption than all the others. 
+
+\subsection*{Python Version}
+Before testing our data, we formulate the following hypotheses as to the impact of Python version on benchmark energy consumption:
+
+\begin{itemize}[label={}]
+    \item \textbf{Null Hypothesis $(H_0)$:}
+    There is no significant difference in energy consumption depending on the Python version. In other words, energy consumption during benchmarking is more or less equal no matter the Python version.
+    \item \textbf{Alternative Hypothesis $(H_A)$:} At least one group distribution differs significantly from at least one other group distribution. That is, at least one Python version consumes considerably less or more energy than the others.
+\end{itemize}
+
+Upon running the Kruskal-Wallis test on our data grouped by Python versions, we again get a p-value below 0.05. Therefore, we can reject the null hypothesis, and instead accept the alternative hypothesis that at least one Python version consumes considerably less or more energy than the others. Using the Mann-Whitney U test to compare groups pairwise, we find that there is no significant difference between Python3.9 and 3.10, and likewise there is no significant difference between Python3.11, 3.12 and 3.13. However, Python3.11, 3.12 and 3.13 all perform significantly better than both Python3.9 and 3.10. This suggests that while there is a significant improvement in energy consumption from Python3.11 onwards, there are no significant improvements in subsequent versions.
+
+\subsection*{Raspberry Pi Version}
+Before testing our data, we formulate the following hypotheses as to the impact of RPi version on benchmark energy consumption:
+
+\begin{itemize}[label={}]
+    \item \textbf{Null Hypothesis $(H_0)$:}
+    There is no significant difference in energy consumption depending on the RPi version. In other words, energy consumption during benchmarking is more or less equal no matter the RPi version.
+    \item \textbf{Alternative Hypothesis $(H_A)$:} At least one group distribution differs significantly from at least one other group distribution. That is, at least one RPi version consumes considerably less or more energy than the other.
+\end{itemize}
+
+Upon running the Kruskal-Wallis test on our data grouped by RPi versions, we also get a p-value below 0.05. Therefore, we can reject the null hypothesis, and instead accept the alternative hypothesis that at least one RPi version consumes considerably less or more energy than the other. Using the Mann-Whitney U test to compare groups pairwise, we find that the RPi4B has significantly lower energy consumption than the RPi3B+.

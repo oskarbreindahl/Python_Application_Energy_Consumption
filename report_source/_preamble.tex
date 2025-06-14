@@ -1,0 +1,141 @@
+
+\documentclass[11pt,table]{article}
+% Sprog
+\usepackage[utf8]{inputenc}                 % Indkodningsformat af LaTeX-kode
+\usepackage[T1]{fontenc}					% Fontindkodning
+\usepackage{csquotes}
+\usepackage[english]{babel} 			    % Sprogpakke
+\usepackage{wrapfig}
+\usepackage{textcomp}
+\usepackage{pdfpages}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage[backend=biber, style=numeric, sortcites, sorting=nty, backref, natbib, hyperref]{biblatex}
+\usepackage{wrapfig}
+
+% Sideopsætning
+\usepackage{geometry}                       % Håndtering af papirstørrelse og marginer
+\geometry{a4paper, twoside}                 % Papirstørrelse
+\geometry{top=2.5cm, bottom=2.5cm}		    % Øvre og nedre margin
+\geometry{left=2.5cm, right=2.5cm}		    % Venstre og højre margin
+\usepackage{eso-pic,graphicx,transparent}   %Frontpage billede
+	
+% Sidehoved/-fod
+\usepackage{emptypage}
+\usepackage{fancyhdr}						% Håndtering af sidehoved og -fod
+\pagestyle{fancy}							% Indstilling af sidestil
+\fancyhf{}
+% \fancyhead[LE, RO]{\textsc{\thepage}}
+% \fancyhead[RE, LO]{}
+% \fancyfoot[LE, RO]{}
+% \fancyfoot[RE, LO]{}
+\setlength{\headheight}{14.5pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+					
+% Tekstformatering
+\setlength{\parindent}{0pt}				    % Indryk
+\linespread{1.2}							% Linjeafstand
+
+% For at lave paragraphs til subsubsubsections
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+            {-2.5ex\@plus -1ex \@minus -.25ex}%
+            {1.25ex \@plus .25ex}%
+            {\normalfont\normalsize\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+% Matematik
+\usepackage{amsmath}						% Avanceret udvidelser
+\usepackage{amssymb}					    % Symbolpakke
+\usepackage{float}
+\usepackage{algorithmic}
+	
+% Figurer
+\usepackage{wrapfig}
+\usepackage{graphicx}						% Indsætning af grafik	
+\graphicspath{{Appendix/}}					% Indstilling af filsti
+\usepackage{subfigure}      				% Underfigurer	
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1.5pt] (char) {#1};}}
+        
+
+% Tabeller
+\usepackage{array}							% Udvidet funktionalitet til tabeller
+\usepackage{booktabs}				 		% Enkle tabeller
+\usepackage{longtable}
+\usepackage{ltablex}
+\usepackage{multirow}						% Rækkeomspændende celler i tabeller
+\usepackage{rotating}						% Rotation af figurer/tabeller
+
+% Figur-/Tabeltekst
+\usepackage{caption}                        % Objekttekstindstillinger
+\captionsetup{format=hang, labelfont=bf, font=footnotesize}
+\usepackage{chngcntr}
+\counterwithout{figure}{section}			% Nummerering af figurer
+\counterwithout{table}{section}			    % Nummerering af tabeller
+\counterwithout{equation}{section}          % Nummerering af formler
+\counterwithout*{footnote}{section}	        % Nummerering af fodnoter
+\Alph{subsection}
+
+% Indentation
+\setlength{\parindent}{0pt} %mellemrum i stedet for indrykning ved afsnit
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex} %mellemrum i stedet for indrykning ved afsnit
+	
+% Krydshenvisninger
+\usepackage[hidelinks]{hyperref}		    % Hyperlink i PDF
+\hypersetup{
+colorlinks=true,
+citecolor=black,
+linkcolor=black,
+urlcolor=blue!50!black
+}
+\usepackage{url}							% Indsætning af url's
+	
+% Appendix
+\usepackage{appendix}                       % Appendix
+\usepackage{pdfpages}	      % Insertion of PDF-pages
+\usepackage{listings}
+\usepackage{lscape}
+
+\newcolumntype{?}{!{\vrule width 0.2ex}}
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{gray}{0.85}
+\definecolor{newgreen}{RGB}{39, 174, 96}
+\newcolumntype{L}{>{\columncolor{Gray}}l}
+
+
+\newcommand{\fakesubsection}[1]{%
+  \par\refstepcounter{subsection}% Increase subsection counter
+  \subsectionmark{#1}% Add subsection mark (header)
+  \addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}#1}% Add subsection to ToC
+  % Add more content here, if needed.
+}
+
+\lstdefinestyle{code}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=code}
+
+% Watermark
+%\usepackage[firstpage]{draftwatermark}

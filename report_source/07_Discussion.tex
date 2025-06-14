@@ -1,0 +1,40 @@
+\fancyhead[R]{Python Application Energy Consumption}
+\section{Discussion}
+\label{sec:discussion}
+Upon confirming the statistical significance of our results, we can answer our research questions as follows:
+\begin{itemize}[label={}]
+    \item \textbf{RQ1:} 
+    \textit{What is the impact of choice of OS on energy consumption when running application benchmarks?}
+\end{itemize}
+The impact of choice of OS on energy consumption when running application benchmarks is proven to be significant. Using the average energy consumption of setups displayed in \autoref{fig:barplot} for comparison, going from best to worst OS within a Python/RPi combination represents an average $\sim$25\% decrease in energy consumption. Other research has found possible explanations for this observed impact. Roque et al.\cite{roque2025unveiling} investigate the difference in energy consumption between Alpine and Ubuntu when running the database system Redis. The paper finds that some C functions consume 20.2\% more energy on Alpine due to its use of the \texttt{musl} C-library contrasted with the \texttt{glibc} library used by Ubuntu. These findings indicate that the results of our experiments regarding OSs could be explained by their use of different C-libraries, especially since the standard Python interpreter is written in C.
+
+\begin{itemize}[label={}]
+    \item \textbf{RQ2:} 
+    \textit{What is the impact of choice of Python version on energy consumption when running application benchmarks?}
+\end{itemize}
+
+The impact of choice of Python version on energy consumption when running application benchmarks is proven to be significant. Using the average energy consumption of setups displayed in \autoref{fig:barplot} for comparison, going from worst to best Python version within a given OS/RPi combination represents a $\sim$21\% average decrease in energy consumption. However, from the results of our experiments, the improvement in energy consumption is primarily found from going beyond Python3.10, with no significant improvements thereafter. This suggests that there is currently a plateau in improvements in energy consumption for newer versions of Python.
+
+\begin{itemize}[label={}]
+    \item \textbf{RQ3:}
+    \textit{What is the impact of choice of hardware on energy consumption when running application benchmarks?}
+\end{itemize}
+
+The impact of choice of hardware on energy consumption when running application benchmarks is proven to be significant. Comparing again the average energy consumption of setups displayed in \autoref{fig:barplot}, moving from RPi3B+ to RPi4B with any combination of Python/OS represents a $\sim$71\% average decrease in energy consumption, which is by far the largest improvement among the three variables. This is likely due to the newer CPU used in the RPi4B. Based on our results, choice of hardware can be considered the most impactful variable on energy consumption.
+
+When considering all three variables together, we look again at \autoref{fig:barplot}. Comparing the least to most energy-efficient configuration, we see a drop from $\sim$3843J to $\sim$590J in average energy consumption when going from Python3.10 on FreeBSD on RPi3B+ to Python3.11 on Manjaro on RPi4B, amounting to a $\sim$85\% decrease. Within hardware boundaries, on the RPi3B+, going from worst (Python3.10, FreeBSD, $\sim$3843J avg.) to best (Python3.13, Manjaro $\sim$2109J avg.) represents a $\sim$45\% decrease in average energy consumption. On the RPi4B, going from worst (Python3.10, FreeBSD, $\sim$980J avg.) to best (Python3.12, Manjaro $\sim$590J avg.) represents a $\sim$39\% decrease.
+
+These findings indicate that, before writing any code, developers can and should make educated choices about their execution environment. A logical reaction to these results would be to upgrade to the newest hardware, change OS, and refactor code to run on the newest language version. However, while these choices might be made freely in a greenfield project, most software development entails some kind of maintenance of legacy code. Recent studies of the effects of refactoring on performance are inconclusive, with both improvement and regression observed in some cases\cite{traini2021software}, and increases and decreases in software quality in others\cite{almogahed2022recent}. Additionally, while the largest improvement in energy efficiency was found in upgrading hardware, the production and replacement of hardware is known to be both economically and environmentally costly\cite{gupta2021chasing}. These are all trade-offs that should be taken into account when deciding an approach to increasing application energy efficiency. 
+
+\subsection*{Threats to Validity}
+\textbf{Conclusion Validity:}
+The main statistical threat lies in the relatively small sample size for each configuration (n=10). This limits statistical power and the granularity of insights from post-hoc comparisons. Additionally, only having two Raspberry Pis limits the basis for comparison between hardware configurations.
+
+\textbf{Internal Validity:}
+The experiment was conducted under controlled conditions using a scripted process to automate execution and data collection. However, uncontrolled background processes on the Raspberry Pi or laptop could have introduced minor variations in energy consumption. Also, while each configuration was tested repeatedly, the execution order was not randomised, which could have introduced sequence-related bias.
+
+\textbf{Construct Validity:}
+Energy consumption was calculated as the product of average power draw and execution time. While this reflects the energy cost of benchmark execution, it may not capture other forms of overhead like idle time or initialisation. Furthermore, using only three Pyperformance benchmarks from the "app" group may limit the generality of conclusions to other application types or execution environments.
+
+\textbf{External Validity:}
+This study was performed on two Raspberry Pi models with ARM CPUs, using four Unix-based operating systems. While this selection is diverse, it does not represent all hardware and OS configurations where Python is deployed, such as x86-based laptops, desktops, or servers. Results may therefore not generalise to other hardware architectures or to non-Linux environments. Additionally, while the benchmarks claim to be realistically applicative, real-world application workloads may be more intense and behave differently.
