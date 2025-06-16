@@ -1,0 +1,34 @@
+\section{Background \& Terminology}\label{sec:background}
+
+\noindent\textbf{System Under Test:} \emph{Raspberry Pis} are credit card sized ARM-based single-board computers produced by the Raspberry Pi Foundation\cite{raspberry_pi_website}.
+These inexpensive computers are often used in lab experiments, e.g., \cite{zhao2015exploring,pfeiffer2024energy}.\todo{Check if the former can be used for that statement.}
+We use two versions of \toolname{Raspberry Pis} as \glspl{sut} for the research in this paper.
+First, the \toolname{Raspberry Pi 3B+} with a four core ARM-Cortex-A53 \gls{cpu} and 1GB RAM and second, the \toolname{Raspberry Pi 4B} with a four core ARM-Cortex A72 \gls{cpu} and XXGB RAM\todo{Which version did you use?}.
+Both processors are 64-bit running at 1.4GHz and 1.8GHz respectively.
+The main difference between the Cortex-A53 and A72 architecture is that the latter supports out-of-order memory operations.
+
+\noindent\textbf{Operating Systems:} We execute our experiment on four \glspl{os}.
+One Unix, \projname{FreeBSD}\cite{freebsd_website}, and the three Linux distributions \projname{Alpine}\cite{alpine_website}, \projname{Manjaro}\cite{manjaro_website} and \projname{Ubuntu}\cite{ubuntu_website}.\todo{Add precise versions+kernel and libc versions}
+In the Linux realm, \emph{distributions} are a collection of \gls{os} kernel, init system, tools, and applications, which in the case of Unixes like \projname{FreeBSD} are all provided together as a single system.
+For example, \projname{Ubuntu} is a \projname{Debian}-based distribution (relying on \projname{systemd} and the \projname{apt} package manager) that focuses on stability and \projname{Manjaro} is based on \projname{Arch Linux} (relying on \projname{systemd} and the \projname{pacman} package manager) with a rolling-release update model.
+\projname{Alpine Linux} differs from the other two Linuxes in the choice of basic software.
+It relies on \projname{musl} instead of \projname{glibc} as C standard library, \projname{BusyBox} instead of \projname{GNU Core Utilities}, and \projname{OpenRC} as init system instead of \projname{systemd}.
+\todo{Add sentence on popularity and widely used on servers/containers}
+
+\noindent\textbf{Python:} is likely the most popular~\cite{djurdjev2024popularity,pypl,tiobe} and most used~\cite{stackover, statista} programming language in the world.
+There are many different implementations of the language, e.g., the reference implementation \cp, \projname{pypy}, \projname{MicroPython}, etc.
+In this paper we consider the --at the time of writing-- latest releases of the five supported versions of \cp: \cpv{9.22}, \cpv{10.17}, \cpv{11.12}, \cpv{12.10}, and \cpv{13.3}.
+In the remainder, we denote these versions by their major and minor version number, e.g., \cpv{9}, \cpv{10}, etc.
+
+\noindent\textbf{\acrlong{pyperformance}:} is an open-source benchmarking tool~\cite{pyperf_git} that \cp developers use to report performance improvements of new versions of \cp, see e.g., the release notes for \cpv{12}~\cite{py312}.
+\gls{pyperformance} consists of 87 benchmark programs that are organized in seven \emph{groups}.
+For our experiment, we select three \textit{``'High-level' applicative benchmarks''}\cite{pyperf_docs} benchmarks from the \toolname{apps} group: \toolname{2to3}, \toolname{tornado\_http} and \toolname{chameleon}.
+
+
+\noindent\textbf{Measuring Energy Consumption:} There are two main ways to measure the energy consumption of a \gls{sut}.
+On certain Intel-based processors, one could use \gls{rapl}~\cite{khan2018rapl}, which is a built-in \gls{cpu} feature that allows --amongst others-- to estimate power draw of running programs.
+% https://greencompute.uk/Measurement/RAPL
+Since this feature is not available on a broad range of \glspl{cpu}, e.g., the ARM-Cortex architectures in our experiment, one can always directly measure power draw of a \gls{sut} with a suitable power meter~\cite{kavanagh2019rapid}.
+In our experiment, we use the \toolname{Otii Ace Pro}~\cite{otii_website,qoitech2022otii}, which is a power supply with combined scriptable power-meter.
+We use it to record \emph{power draw} ($P$ in Watts [W]) and execution times of benchmarks (in seconds [s])
+We compute \emph{energy consumption} ($E$ in Joules [J]) via $E = P \times t$.
