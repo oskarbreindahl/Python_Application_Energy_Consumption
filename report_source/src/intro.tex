@@ -1,0 +1,46 @@
+\section{Introduction}\label{sec:introduction}
+
+The responsibility of software developers to create sustainable and energy-efficient software is becoming more and more apparent\cite{caballar2024we} and the environmental impact and sustainability of software is increasingly studied.\todo{Add reference sausage}.
+
+\python is likely the most popular~\cite{pypl,tiobe} and most used~\cite{stackover, statista} programming language in the world.
+Big corporations create software products with it.
+For example, Google’s \projname{YouTube} is powered by \python~\cite{winters2020software}, circa 20\% of \projname{Facebook}’s infrastructure is written in \python~\cite{komorn2016python}, \projname{Instagram} is a \python application~\cite{ni2016web}, or circa 80\% of \projname{Spotify}’s backend services are written in \python~\cite{van2013how}.
+
+Like other dynamically typed and interpreted programming languages, running certain \python programs is reported to be slow and of low energy efficiency~\cite{pereira_rank_efficiency}.
+In recent years, the developers of \cp, the reference implementation of the \python interpreter, continuously increase the performance of \cp, i.e., they increase execution times of \python programs.
+
+Since energy consumption of software is influenced by execution times ($E = P \times t$) and since \python is a comparably slow dynamically typed interpreted language, it might be worthwhile to continue to increase performance of \cp over the coming releases.
+We believe that additionally focusing on the energy consumption of programs executed on \cp should be in focus as well.\todo{Improve this.}
+Currently, there is no \gls{pep} to reduce energy consumption of \python programs as there are \glspl{pep} to increase performance of \cp~\cite{pep_index}.
+
+In this paper, we present a light weight experiment design that allows to compare the energy consumption of \python programs that are executed on various configurations of hardware, \gls{os}, and \python versions.
+Our goals are \emph{a)} to investigate if certain configurations of \glspl{cpu}, \glspl{os}, and \python versions significantly impact the energy consumption of \python benchmarks from \gls{pyperformance}, and \emph{b)} to provide an experiment design that is so light weight that \cp developers can efficiently include it in their current setup when running \gls{pyperformance}.
+
+We investigate the following three research questions:
+\begin{itemize}
+  \item \textbf{RQ1:} \textit{How do different \glspl{cpu} impact the energy consumption of \gls{pyperformance} benchmarks?}
+  \item \textbf{RQ2:} \textit{How do different \glspl{os} impact the energy consumption of \gls{pyperformance} benchmarks?}
+  \item \textbf{RQ3:} \textit{How do different versions of \cp impact the energy consumption of \gls{pyperformance} benchmarks?}
+\end{itemize}
+
+We measure energy consumption of a \gls{sut} with an \toolname{Otii Ace Pro}~\cite{qoitech2022otii}.
+In this paper, \glspl{sut} are a \toolname{Raspberry Pi 3B+} (ARM-Cortex-A53) and \toolname{Raspberry Pi 4B} (ARM-Cortex A72) respectively.
+% TODO: Add these to references
+% https://datasheets.raspberrypi.com/rpi3/raspberry-pi-3-b-plus-product-brief.pdf
+% https://datasheets.raspberrypi.com/rpi4/raspberry-pi-4-datasheet.pdf
+On each \toolname{Raspberry Pi}, we sequentially deploy one of the four Unix(-like) \glspl{os} \projname{Alpine}, \projname{Manjaro}, \projname{Ubuntu}, and \projname{FreeBSD}.
+On each \gls{os}, we sequentially deploy different versions of \cp.
+The combination of \gls{cpu}, \gls{os}, and version of \cp is a configuration.
+In our experiment, we investigate 40 different configurations.
+For each configuration, we execute \gls{pyperformance} and measure execution times of various benchmarks and their power draw during execution.
+
+We find that\todo{Complete me!}
+% Fill in high level results here!
+
+
+The contributions of this paper are:
+\begin{itemize}
+  \item We present an experiment design to directly measure the energy consumption of 40 different configurations of \gls{cpu}, \gls{os}, and version of \cp.
+  \item We demonstrate that benchmarks executed on certain configurations of \gls{cpu}, \gls{os}, and version of \cp consume significantly less energy compared to other widely used configurations.
+  \item We provide a replication kit\footnote{\url{https://github.com/oskarbreindahl/Python_Application_Energy_Consumption}} that allows to automatically replicate our results. It also contains all results reported in this paper and allows for reproduction.\todo{Move repo and anonymize link for review.}
+\end{itemize}
