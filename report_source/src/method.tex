@@ -1,11 +1,25 @@
 \section{Experiment Design}\label{sec:experimentdesign}
 
-\begin{figure}
+\begin{figure}[t]
+\begin{subfigure}[t]{0.58\textwidth}
     \centering
-    \includegraphics[width=0.5\textwidth]{images/experiment.png}
+    \includegraphics[width=\textwidth]{images/experiment.png}
     \caption{Experiment design for measuring power draw and runtime of \gls{sut} while executing \gls{pyperformance} benchmarks.}
     \label{fig:design}
+\end{subfigure}
+\hspace{\fill}
+\begin{subfigure}[t]{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/scenario.pdf}
+    \caption{Interactions between the controller computer initiating power draw recordings and benchmark executions.}
+    \label{fig:sequence}
+\end{subfigure}
+\caption{Illustration of our experiment design.}\label{fig:exp_scen}
 \end{figure}
+
+
+
+
 
 \autoref{fig:design} illustrates our experiment design.
 The \toolname{Otii Arc Pro} in the center, powers a \toolname{Raspberry Pi} (\gls{sut}) via USB-C.
@@ -35,12 +49,7 @@ Each operating system and each version of \python is setup in default configurat
 % Throughout the entire benchmarking process, the CPU temperature never rises above 37$^{\circ}$C, which is deemed satisfactory for consistency of results.
 % OSs are installed in their default configurations to make sure that any potential differences in energy consumption between them can be explained by the OS implementation specifics alone, and not by the quality of performance optimizations made by the user.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/scenario.pdf}
-    \caption{High-level sequence diagram showing the sequence of actions involved in running the experiment}
-    \label{fig:sequence}
-\end{figure}\todo{Put this in one figure with experiment design}
+
 
 \todo{@Helge: continue here}
 Per configuration of \gls{cpu}, \gls{os}, and version of \python, we execute the \gls{pyperformance} benchmarks ten times\todo{@oskar: you experiment script does it 11 times, why?}, see \autoref{fig:sequence}.
