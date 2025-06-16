@@ -1,0 +1,53 @@
+\section{Experiment Design}\label{sec:experimentdesign}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{../images/experiment.png}
+    \caption{Experiment design for measuring power draw and runtime of \gls{sut} while executing \gls{pyperformance} benchmarks.}
+    \label{fig:design}
+\end{figure}
+
+\autoref{fig:design} illustrates our experiment design.
+The \toolname{Otii Arc Pro} in the center, powers a \toolname{Raspberry Pi} (\gls{sut}) via USB-C.
+At the same time, it serves as a power meter recording the power draw of the \gls{sut} (illustrated by a green line).
+A controller computer (to the right in \autoref{fig:design}) is connected via USB to the power meter (black line).
+Using the \toolname{Otii 3 Desktop App}
+% https://docs.qoitech.com/user-manual/otii/software/otii3-desktop-app
+and the \toolname{Otii Automation Toolbox}
+% https://www.qoitech.com/automation-toolbox/
+, the controller computer can trigger a measurement and collect all power meter recordings automatically.
+
+Both the \gls{sut} and the controller computer are connected via ethernet to a local network (blue line).
+By that connection, the controller computer initiates executions of \acrlong{pyperformance} on the \gls{sut}.
+
+Not illustrated in \autoref{fig:design} is a 25V lab power supply powering the \toolname{Otii Arc Pro} and a room fan that is placed next to the \gls{sut} to keep \gls{cpu} temperature on a constant level.
+
+Prior to the experiment, we prepare four SD-cards.
+One with \projname{FreeBSD}, \projname{Alpine}, \projname{Manjaro}, and \projname{Ubuntu} Linux respectively\todo{Add precise versions+kernel and libc versions}, see our replication kit for details.
+On each of these, we automatically install the five versions of \python (\cpv{9} to \cpv{13}) from source together with the \gls{pyperformance} tool.\todo{Did that include tuning?}
+Each operating system and each version of \python is setup in default configuration.
+
+
+
+% A large fan is set up to continually cool the RPi, and CPU temperature is then queried directly on the RPi through another SSH terminal on the PC, before, during, and after benchmarks.
+% This is to make sure that rising CPU temperature doesn't skew the measurements for longer benchmarks, since CPUs are known to perform worse at higher temperatures\cite{benoit2020impact}.
+% TODO: Move that to Threats
+% Throughout the entire benchmarking process, the CPU temperature never rises above 37$^{\circ}$C, which is deemed satisfactory for consistency of results.
+% OSs are installed in their default configurations to make sure that any potential differences in energy consumption between them can be explained by the OS implementation specifics alone, and not by the quality of performance optimizations made by the user.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{images/thesis_sequence.png}
+%     \caption{High-level sequence diagram showing the sequence of actions involved in running the experiment}
+%     \label{fig:sequence}
+% \end{figure}
+
+\todo{@Helge: continue here}
+An \emph{experiment run}
+
+Note, \gls{pyperformance} is configured to execute each benchmark ten times\todo{Double check that! I believe it is more often.}
+
+
+\autoref{fig:sequence} shows the actions involved in running the experiment, and how the three main devices interact with each other.
+On each RPi, the process shown is repeated ten times for each unique combination of Python version, OS, and RPi, totalling 400 recordings across 40 configurations.
+For detailed instructions on how to run the experiment, install the OSs and Pyperformance, open SSH sessions, and query temperature, see the repository.
