@@ -1,0 +1,14 @@
+@startuml
+loop "FreeBSD, Apline, Ubuntu, Manjaro"
+loop "Python 3.9, 3.10, 3.11, 3.12, 3.13"
+loop 10 times
+    Controller -> SUT: SSH Connect
+    Controller -> "Otii Ace Pro": Record power draw
+    Controller -> SUT: pyperformance run
+    SUT --> Controller: exit(0)
+    "Otii Ace Pro" --> Controller: Power draw CSV file
+    SUT --> Controller: SSH Disconnect
+end
+end
+end
+@enduml

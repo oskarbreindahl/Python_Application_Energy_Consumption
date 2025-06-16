@@ -2,7 +2,7 @@
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{../images/experiment.png}
+    \includegraphics[width=0.5\textwidth]{images/experiment.png}
     \caption{Experiment design for measuring power draw and runtime of \gls{sut} while executing \gls{pyperformance} benchmarks.}
     \label{fig:design}
 \end{figure}
@@ -35,15 +35,18 @@ Each operating system and each version of \python is setup in default configurat
 % Throughout the entire benchmarking process, the CPU temperature never rises above 37$^{\circ}$C, which is deemed satisfactory for consistency of results.
 % OSs are installed in their default configurations to make sure that any potential differences in energy consumption between them can be explained by the OS implementation specifics alone, and not by the quality of performance optimizations made by the user.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.8\textwidth]{images/thesis_sequence.png}
-%     \caption{High-level sequence diagram showing the sequence of actions involved in running the experiment}
-%     \label{fig:sequence}
-% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/scenario.pdf}
+    \caption{High-level sequence diagram showing the sequence of actions involved in running the experiment}
+    \label{fig:sequence}
+\end{figure}\todo{Put this in one figure with experiment design}
 
 \todo{@Helge: continue here}
-An \emph{experiment run}
+Per configuration of \gls{cpu}, \gls{os}, and version of \python, we execute the \gls{pyperformance} benchmarks ten times\todo{@oskar: you experiment script does it 11 times, why?}, see \autoref{fig:sequence}.
+
+
+
 
 Note, \gls{pyperformance} is configured to execute each benchmark ten times\todo{Double check that! I believe it is more often.}
 
