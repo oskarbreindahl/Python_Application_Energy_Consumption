@@ -46,6 +46,25 @@ $q_{4} \approx 1388.55\unit{\second}$,
 $\mu \approx 1096.04\unit{\second}$,
 $\sigma \approx 155.79$).
 The longest runtime ($23\unit{\minute}:08\unit{\second}$) of a benchmark is on a \toolname{Raspberry Pi 3B+} with \projname{FreeBSD} and \cpv{10} whereas the fastest ($3\unit{\minute}:57\unit{\second}$) is on a \toolname{Raspberry Pi 4B} with \projname{Manjaro} and \cpv{11}.
+However, note that on average, which is denoted by the centers of the ellipses, benchmark runtimes differ on the \gls{os}.
+For example, on a \toolname{Raspberry Pi 4B} benchmarks over all versions of \python run fastest on \projname{Manjaro} ($\mu \approx 4\unit{\minute}:18\unit{\second}$) followed by \projname{Apline} ($\mu \approx 5\unit{\minute}:12\unit{\second}$), \projname{FreeBSD} ($\mu \approx 5\unit{\minute}:14\unit{\second}$) and \projname{Ubuntu} ($\mu \approx 5\unit{\minute}:31\unit{\second}$).
+That is ca. $1\unit{\minute}:10\unit{\second}$ difference between the ``fastest'' and the ``slowest'' \gls{os}.
+On the \toolname{Raspberry Pi 3B+} the order of \glspl{os} with respect to runtimes of benchmarks is different though.
+Here, the benchmarks over all versions of \python run fastest on \projname{Manjaro} ($\mu \approx 16\unit{\minute}:23\unit{\second}$) followed by \projname{Ubuntu} ($\mu \approx 18\unit{\minute}:24\unit{\second}$),
+\projname{Apline} ($\mu \approx 18\unit{\minute}:42\unit{\second}$), and \projname{FreeBSD} ($\mu \approx 19\unit{\minute}:32\unit{\second}$) with a difference of ca. $3\unit{\minute}:09\unit{\second}$ between the ``fastest'' and the ``slowest'' \gls{os}.
+
+
+% Computer  OS
+% RPi4B     Manjaro    0 days 00:04:18.764540
+%           Alpine     0 days 00:05:11.532460
+%           FreeBSD    0 days 00:05:14.141560
+%           Ubuntu     0 days 00:05:31.379900
+% RPi3B+    Manjaro    0 days 00:16:23.611000
+%           Ubuntu     0 days 00:18:24.983500
+%           Alpine     0 days 00:18:42.714040
+%           FreeBSD    0 days 00:19:32.856520
+
+
 
 Power draw of benchmark execution in any configuration varies in the range of $500mW$
 ($q_{0} \approx 2.33\unit{\watt}$,
