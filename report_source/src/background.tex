@@ -3,12 +3,12 @@
 \noindent\textbf{System Under Test:} \emph{Raspberry Pis} are credit card sized ARM-based single-board computers produced by the Raspberry Pi Foundation\cite{raspberry_pi_website}.
 These inexpensive computers are often used in lab experiments, e.g., \cite{zhao2015exploring,pfeiffer2024energy}.\todo{Check if the former can be used for that statement.}
 We use two versions of \toolname{Raspberry Pis} as \glspl{sut} for the research in this paper.
-First, the \toolname{Raspberry Pi 3B+} with a four core ARM-Cortex-A53 \gls{cpu} and 1GB RAM and second, the \toolname{Raspberry Pi 4B} with a four core ARM-Cortex A72 \gls{cpu} and XXGB RAM\todo{Which version did you use?}.
+First, the \toolname{Raspberry Pi 3B+} with a four core ARM-Cortex-A53 \gls{cpu} and 1GB RAM and second, the \toolname{Raspberry Pi 4B} with a four core ARM-Cortex A72 \gls{cpu} and 4GB RAM.
 Both processors are 64-bit running at 1.4GHz and 1.8GHz respectively.
 The main difference between the Cortex-A53 and A72 architecture is that the latter supports out-of-order memory operations.
 
 \noindent\textbf{Operating Systems:} We execute our experiment on four \glspl{os}.
-One Unix, \projname{FreeBSD}\cite{freebsd_website}, and the three Linux distributions \projname{Alpine}\cite{alpine_website}, \projname{Manjaro}\cite{manjaro_website}, and \projname{Ubuntu}\cite{ubuntu_website}.\todo{Add precise versions+kernel and libc versions}
+One Unix, \projname{FreeBSD}\cite{freebsd_website}(FreeBSD 14.2 ARM, libc.so.7), and the three Linux distributions \projname{Alpine}(Alpine Linux 3.22, Linux LTS kernel version 6.12, musl 1.2.5)\cite{alpine_website}, \projname{Manjaro}(Manjaro 23.02 Minimal, Linux LTS kernel version 6.1, glibc version 2.35)\cite{manjaro_website}, and \projname{Ubuntu}(Ubuntu Server 25.04, Linux kernel version 6.14, glibc 2.41)\cite{ubuntu_website}.\todo{Versions added, probably need better formatting}
 In the Linux realm, \emph{distributions} are a collection of \gls{os} kernel, init system, tools, and applications, which in the case of Unixes like \projname{FreeBSD} are all provided together as a single system.
 For example, \projname{Ubuntu} is a \projname{Debian}-based distribution (relying on \projname{systemd} and the \projname{apt} package manager) that focuses on stability and \projname{Manjaro} is based on \projname{Arch Linux} (relying on \projname{systemd} and the \projname{pacman} package manager) with a rolling-release update model.
 \projname{Alpine Linux} differs from the other two Linuxes in the choice of basic software.
