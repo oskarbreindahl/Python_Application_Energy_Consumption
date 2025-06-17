@@ -49,17 +49,13 @@ Each operating system and each version of \python is setup in default configurat
 % Throughout the entire benchmarking process, the CPU temperature never rises above 37$^{\circ}$C, which is deemed satisfactory for consistency of results.
 % OSs are installed in their default configurations to make sure that any potential differences in energy consumption between them can be explained by the OS implementation specifics alone, and not by the quality of performance optimizations made by the user.
 
+Per configuration of \gls{cpu}, \gls{os}, and version of \python, we execute the \gls{pyperformance} benchmarks ten times\todo{@oskar: you experiment script does it 11 times, why?} and record power draw for each invocation of the benchmarks, see the inner most loop in\autoref{fig:sequence}.
+Note, per default, \gls{pyperformance} executes each benchmark ten times per invocation of the tool.\todo{Double check that! I believe it is more often.}
+We omit to illustrate this internal behavior in \autoref{fig:sequence} and consider \gls{pyperformance} as a black box in our experiment.
+The ten invocations of the \gls{pyperformance} benchmarks is repeated five times, i.e., on each version of \python (\cpv{9} to \cpv{13}), see nested loop on level two in \autoref{fig:sequence}.
+These two steps of the experiment are automated via scripts.
+The benchmarks are invoked 10 times per version of \python on each of the four \gls{os}, \projname{FreeBSD}, \projname{Alpine}, \projname{Manjaro}, and \projname{Ubuntu} Linux, see outer most loop in \autoref{fig:scenario}, and in turn on each of the two \gls{sut} (\toolname{Raspberry Pi 3B+} and \toolname{4B} respectively.
+These latter two experiment steps are manual since they require to power-down the respective \gls{sut} and replace the SD-card or to replace the \gls{sut} (not illustrated in \autoref{fig:scenario}).
 
-
-\todo{@Helge: continue here}
-Per configuration of \gls{cpu}, \gls{os}, and version of \python, we execute the \gls{pyperformance} benchmarks ten times\todo{@oskar: you experiment script does it 11 times, why?}, see \autoref{fig:sequence}.
-
-
-
-
-Note, \gls{pyperformance} is configured to execute each benchmark ten times\todo{Double check that! I believe it is more often.}
-
-
-\autoref{fig:sequence} shows the actions involved in running the experiment, and how the three main devices interact with each other.
-On each RPi, the process shown is repeated ten times for each unique combination of Python version, OS, and RPi, totalling 400 recordings across 40 configurations.
-For detailed instructions on how to run the experiment, install the OSs and Pyperformance, open SSH sessions, and query temperature, see the repository.
+In total, we collect 400 measurements, i.e., 10 invocations of \gls{pyperformance} on five versions of \python on four \gls{os} on two \gls{sut}.
+All collected measurements are automatically stored in CSV files, which we aggregate for further analysis for the following sections.
